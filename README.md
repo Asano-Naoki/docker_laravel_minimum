@@ -17,11 +17,16 @@ docker run --rm --volume $PWD:/app composer create-project laravel/laravel examp
 NOTE:
 The files and directories created with this command are owned by root user/group. In order to change the owner, use the -u option of the docker run command or run the chown command seperately. 
 
-DB_HOST is referred by the name "mysql" instead of 127.0.0.1 in this docker-compose environment, so change the section in the .env file in you Laravel project directory.
+DB_HOST is referred by the name "mysql" instead of 127.0.0.1 in this docker-compose environment, so change the section in the .env file in you Laravel project directory. Besides, set DB_USERNAME and DB_PASSWORD properly(not root or blank).
+
 
 ```
 -DB_HOST=127.0.0.1
 +DB_HOST=mysql
+-DB_USERNAME=root
+-DB_PASSWORD=
++DB_USERNAME=test_user
++DB_PASSWORD=test_pass
 ```
 
 
@@ -39,13 +44,14 @@ If mysql or nginx has already been started in your local machine and "address al
 Now, you can view your page at http://localhost/.
 
 NOTE:
-In case of "" error, give php-fpm(www-data) the right permission to write log files. This is achieved by this command.
+In case of "The stream or file "/var/www/html/storage/logs/laravel.log" could not be opened in append mode: Failed to open stream: Permission denied" error, give php-fpm(www-data) the right permission to write log files. This is achieved by this command.
 ```
 docker-compose exec nginx sh
 ...
 (after entering sh of nginx)
 ...
 chown :www-data -R /var/www/html/storage/
+chmod 775 -R /var/www/html/storage/
 ```
 
 Finally, make sure that you can execute php artisan migrate.
