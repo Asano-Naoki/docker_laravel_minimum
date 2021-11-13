@@ -31,7 +31,34 @@ DB_HOST is referred by the name "mysql" instead of 127.0.0.1 in this docker-comp
 
 
 ## Usage
-First, copy all the files and directories in this repository with git command or manually.
+First, copy all the files and directory in this repository to your Laravel project directory with git command(fetch and merge) or manually.
+
+An example of the directory structure is like this:
+<pre>
+.
+├── <b>LICENSE</b>
+├── <b>README.md</b>
+├── app
+├── artisan
+├── bootstrap
+├── composer.json
+├── composer.lock
+├── config
+├── database
+├── <b>docker</b>
+├── <b>docker-compose.yaml</b>
+├── package.json
+├── phpunit.xml
+├── public
+├── resources
+├── routes
+├── server.php
+├── storage
+├── tests
+├── vendor
+└── webpack.mix.js
+</pre>
+<b>Bold files and directory</b> are included in this repository.
 
 Next, start docker-compose.
 
